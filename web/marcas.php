@@ -22,21 +22,21 @@ if (!file_exists('pdf/'.$idMarca)) {
             
             $(function(){
                 $.ajax({
-                    url: "pdf/"+<?php echo "'".$idMarca."'"?>,
+                    url: "pdf/<?php echo "".$idMarca?>",
                     success: function(data){
                         $(data).find("a:contains(.pdf)").each(function(){
                            var images=$(this).attr("href");
                            var id=images.substr(0,images.length-4);
-                           var ruta ="pdf/'+<?php echo $idMarca?>+'/'+images+'";
-                            $("<div class='row' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\'pdf/<?php echo "".$idMarca?>/'+images+'\')">'+id+'<a></div>').appendTo("#tablePdf");
-                        });
-                        $(data).find("a:contains(.txt)").each(function(){
+                           var ruta ="pdf/<?php echo $idMarca?>/"+images;
+                            $("<div id='maquina' class='row' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\'pdf/<?php echo "".$idMarca?>/'+images+'\')">'+id+'<a></div>').appendTo("#tablePdf");
+                    $(data).find("a:contains("+id+".txt)").each(function(){
                            var images=$(this).attr("href");
                            var id=images.substr(0,images.length-4);
                            var ruta ="pdf/<?php echo $idMarca?>/"+images;
                            var url=(readTextFile(ruta));
-                            $("<div class='row' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\''+url+'\')">'+id+'<a></div>').appendTo("#tablePdf");
-                        });
+                            $("<div class='' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\''+url+'\')">'+id+'<a></div>').appendTo("#maquina");
+                        });    
+                    });                        
                         if($("#tablePdf").html()==""){
                             $("#tablePdf").html("No hay archivos");
                             $("#frmUpload").html(

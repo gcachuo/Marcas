@@ -17,4 +17,4 @@ $(function(){
             <input type="hidden" name="idMarca" value="<?php echo $idMarca?>">
         </form>
 <a class="btn btn-default" style="cursor:pointer;" onclick="regresar('<?php echo $idMarca?>')">Regresar</a>
-<embed src="<?php echo $archivo;?>" frameborder="0" style="width: 100%; height: 100vh;">
+<embed src="<?php echo $archivo;?>?autoplay=1" frameborder="0" style="width: 100%; height: 100vh;">
