@@ -28,13 +28,13 @@ if (!file_exists('pdf/'.$idMarca)) {
                            var images=$(this).attr("href");
                            var id=images.substr(0,images.length-4);
                            var ruta ="pdf/<?php echo $idMarca?>/"+images;
-                            $("<div id='maquina' class='row' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\'pdf/<?php echo "".$idMarca?>/'+images+'\')">'+id+'<a></div>').appendTo("#tablePdf");
+                            $("<div id='maquina"+id+"' class='row' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\'pdf/<?php echo "".$idMarca?>/'+images+'\')">'+id+'<a></div>').appendTo("#tablePdf");
                     $(data).find("a:contains("+id+".txt)").each(function(){
                            var images=$(this).attr("href");
                            var id=images.substr(0,images.length-4);
                            var ruta ="pdf/<?php echo $idMarca?>/"+images;
                            var url=(readTextFile(ruta));
-                            $("<div class='' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\''+url+'\')">'+id+'<a></div>').appendTo("#maquina");
+                            $("<div class='' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\''+url+'\')">'+id+'<a></div>').appendTo("#maquina"+id);
                         });    
                     });                        
                         if($("#tablePdf").html()==""){
@@ -74,6 +74,16 @@ if (!file_exists('pdf/'.$idMarca)) {
                 $("#frmSistema").submit();
             }
         </script>
+        <div class="form-horizontal">
+            <div class="row" style="margin-bottom:20px">
+                <div class="col-xs-4">
+                    <label>PDF</label>
+                </div>
+                <div class="col-xs-4">
+                    <label>VIDEO</label>
+                </div>
+            </div>
+        </div>
         <div class="form-horizontal" id="tablePdf"></div>
         <form method="post" action="subir.php" id="frmUpload"></form>
         <style>
