@@ -13,7 +13,7 @@ function imagenes()
     $array = array();
     $img = "";
     foreach ($files as $file) {
-        if ($file == "." || $file == "..")
+        if ($file == "." || $file == ".." || $file==".gitignore")
             continue;
         $id = str_replace(" ", "_", explode(".", $file)[0]);
         $href = $file;
