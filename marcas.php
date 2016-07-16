@@ -23,36 +23,19 @@ if (!file_exists('pdf/' . $replace)) {
 
     $(function () {
         $.post("selectArchivos.php", {ajax: "pdfs", id: "<?php echo $idMarca?>"}, function (out) {
-            $("<div id='maquina<?php echo $replace?>' class='row' style='margin-bottom:20px'></div>").html(out).appendTo("#tablePdf");
+            if (out == "") {
+                $("<div id='maquina<?php echo $replace?>' class='row' style='margin-bottom:20px'></div>").html("<span class='col-xs-5'>No hay archivos en la carpeta</span>").appendTo("#tablePdf");
+            }
+            else {
+                $("<div id='maquina<?php echo $replace?>' class='row' style='margin-bottom:20px'></div>").html(out).appendTo("#tablePdf");
+            }
         });
         $.post("selectArchivos.php", {ajax: "videos", id: "<?php echo $idMarca?>"}, function (out) {
-            
-            $("<div class='' style='margin-bottom:20px'></div>").html(out).appendTo("#maquina<?php echo $replace?>");
+            if (out != "")
+                $("<div class='' style='margin-bottom:20px'></div>").html(out).appendTo("#maquina<?php echo $replace?>");
 
         });
-        /*
-
-         var ruta = "pdf/<?php echo $replace?>/" + images;
-
-
-         $(data).find("a:contains(" + id + ".txt)").each(function () {
-         var images = $(this).attr("href");
-         var id = images.substr(0, images.length - 4);
-         var ruta = "pdf/<?php echo $replace?>/" + images;
-         var url = (readTextFile(ruta));
-         $("<div class='' style='margin-bottom:20px'></div>").html('<div class="col-xs-4"><a style="font-size: xx-large;" role="button" onclick="sendArchivo(\'' + url + '\')">' + id + '<a></div>').appendTo("#maquina" + id);
-         });
-         if ($("#tablePdf").html() == "") {
-         $("#tablePdf").html("No hay archivos");
-         $("#frmUpload").html(
-         '<br>Select image to upload:' +
-         '<input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" />' +
-         '<input type="submit" value="Upload Image" name="submit">');
-         }
-         }
-         })*/
-    })
-    ;
+    });
     function sendArchivo(id) {
         $("#archivo").val(id);
         $("#frmSistema").submit();
@@ -78,7 +61,7 @@ if (!file_exists('pdf/' . $replace)) {
 </script>
 <div class="form-horizontal">
     <div class="row" style="margin-bottom:20px">
-        <div class="col-xs-4">
+        <div class="col-xs-5">
             <label>PDF</label>
         </div>
         <div class="col-xs-4">
