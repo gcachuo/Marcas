@@ -11,7 +11,7 @@
                         $(data).find("a:contains(.jpg)").each(function(){
                            var images=$(this).attr("href");
                            var id=images.substr(0,images.length-4);
-                            $("<div class='col-xs-2'></div>").html('<img onclick="listaMarca(\''+id+'\')" src="img/marcas/'+images+'" alt="">').appendTo("#tableImg");
+                            $("<div class='col-xs-4'></div>").html('<img onclick="listaMarca(\''+id+'\')" src="img/marcas/'+images+'" alt="">').appendTo("#tableImg");
                         });
                     }
                 })
@@ -32,8 +32,8 @@
     </body>
     <style>
         img{
-            height: 15vh;
-        }
+            height: 13vh;
+ margin:25px       }
         .table{
             text-align: center
         }
