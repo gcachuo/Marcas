@@ -1,0 +1,1 @@
+chrome.exe –kiosk http:// [enter URL here]

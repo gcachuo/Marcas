@@ -4,14 +4,21 @@
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/bootstrap.js"></script>
     <script>
-        $(function () {
-            $.post("selectArchivos.php",
+        $(function () {  
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}		
+			sleep(1000).then(() => {
+				cargarImagenes();
+			})
+        });
+		function cargarImagenes(){
+		$.post("selectArchivos.php",
                     {ajax:"imagenes"},
                     function (out) {
-                        $("<div class='col-xs-4'></div>").html(out).appendTo("#tableImg");
+                        $("<div class='col-xs-12'></div>").html(out).appendTo("#tableImg");
                     });
-
-        });
+		}
         function listaMarca(id) {
             $("#idMarca").val(id);
             $("#frmSistema").submit();
@@ -27,8 +34,8 @@
 </body>
 <style>
     img {
-        height: 11vh;
-        margin: 25px
+        height: 8vh;
+        margin: 24px
     }
 
     .table {

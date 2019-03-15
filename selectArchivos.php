@@ -6,7 +6,10 @@
  * Time: 12:29 PM
  */
 
-echo $_POST["ajax"]();
+ if(!empty($_POST['ajax'])){
+	echo $_POST["ajax"]();
+ }
+
 function imagenes()
 {
     $files = scandir('img/');
