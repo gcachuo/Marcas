@@ -4,11 +4,14 @@
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/bootstrap.js"></script>
     <script>
-        $(function () {  
+         $(function () {  
+		var tiempoDeEspera = 5; //segundos
+		
+		
 const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }		
-			sleep(1000).then(() => {
+			sleep(tiempoDeEspera*1000).then(() => {
 				cargarImagenes();
 			})
         });
